@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://fn6bbp854hyg"
+path="res://.godot/imported/HUDNumbersYellow.png-e17a5e6a3659ffcd4f0c831c75e7e0f3.fontdata"
+
+[deps]
+
+source_file="res://textures/Sprites/UI/HUD/HUDNumbersYellow.png"
+dest_files=["res://.godot/imported/HUDNumbersYellow.png-e17a5e6a3659ffcd4f0c831c75e7e0f3.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=0

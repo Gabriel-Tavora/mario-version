@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c4wl45vrcbybd"]
+
+[ext_resource type="Script" uid="uid://cwj8hh8p7rxur" path="res://scripts/block/spin_block.gd" id="1_4c666"]
+[ext_resource type="Texture2D" uid="uid://djqo7y4a7rsgr" path="res://textures/Sprites/Thumbnails/Objects/SpinBlock.png" id="2_ne6m1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bka4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ne6m1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7nd1"]
+size = Vector2(16, 16)
+
+[node name="SpinBlock" type="AnimatableBody2D" unique_id=1754830407]
+script = ExtResource("1_4c666")
+metadata/_custom_type_script = "uid://dq8b5vanmbkhi"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=639034164]
+sprite_frames = SubResource("SpriteFrames_bka4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745055538]
+shape = SubResource("RectangleShape2D_x7nd1")

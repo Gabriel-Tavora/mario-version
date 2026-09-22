@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dxha62xwa7fob"]
+
+[ext_resource type="Script" uid="uid://cucg623k35lnq" path="res://scripts/block/4_part_break_particle.gd" id="1_ut88n"]
+
+[sub_resource type="Gradient" id="Gradient_bka4f"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x7nd1"]
+gradient = SubResource("Gradient_bka4f")
+width = 8
+height = 8
+
+[node name="4PartBreakParticle" type="Node2D" unique_id=301872075]
+script = ExtResource("1_ut88n")
+textures = [{}, null, null, null]
+
+[node name="1" type="CharacterBody2D" parent="." unique_id=2007882305]
+position = Vector2(-8, -8)
+scale = Vector2(2, 2)
+
+[node name="Sprite" type="Sprite2D" parent="1" unique_id=500109569]
+texture = SubResource("GradientTexture2D_x7nd1")
+
+[node name="2" type="CharacterBody2D" parent="." unique_id=1720685211]
+position = Vector2(-8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="2" unique_id=1421465773]
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_x7nd1")
+
+[node name="3" type="CharacterBody2D" parent="." unique_id=1523777343]
+position = Vector2(8, -8)
+
+[node name="Sprite" type="Sprite2D" parent="3" unique_id=1419878319]
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_x7nd1")
+
+[node name="4" type="CharacterBody2D" parent="." unique_id=1625805477]
+position = Vector2(8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="4" unique_id=1349067751]
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_x7nd1")

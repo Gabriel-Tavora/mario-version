@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b1crlp8bpewyt"]
+
+[ext_resource type="Texture2D" uid="uid://bp2noccv2ehqo" path="res://textures/Sprites/Objects/SpinBlock.png" id="1_88hy2"]
+[ext_resource type="Script" uid="uid://k6a5qxcs4l7a" path="res://scripts/block/spin_effect.gd" id="1_o2s2h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2s2h"]
+atlas = ExtResource("1_88hy2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd6bx"]
+atlas = ExtResource("1_88hy2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pvl5"]
+atlas = ExtResource("1_88hy2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61su6"]
+atlas = ExtResource("1_88hy2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7nd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2s2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd6bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pvl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61su6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="spin_effect" type="Node2D" unique_id=171570843]
+script = ExtResource("1_o2s2h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2091046175]
+sprite_frames = SubResource("SpriteFrames_x7nd1")
+autoplay = "default"
+frame_progress = 0.47727382

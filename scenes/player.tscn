@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://dn5ud4dperl5d"]
+
+[ext_resource type="Script" uid="uid://cou60ypt1a6cn" path="res://scripts/player/state/player.gd" id="1_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://c2ghbdcbsyk30" path="res://textures/player/mario/dead.png" id="2_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://textures/player/mario/small/duck.png" id="3_jej6c"]
+[ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://textures/player/mario/small/fall.png" id="4_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://textures/player/mario/small/idle.png" id="5_oprun"]
+[ext_resource type="Texture2D" uid="uid://cv5q4gi6k8oi1" path="res://textures/player/mario/small/jump.png" id="6_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://dsbpgg6geewwj" path="res://textures/player/mario/small/p_jump.png" id="7_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://textures/player/mario/small/run.png" id="8_fulsm"]
+[ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://textures/player/mario/small/skid.png" id="9_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://textures/player/mario/small/spin_jump.png" id="10_60mlk"]
+[ext_resource type="Texture2D" uid="uid://du3cmcu5y6hsm" path="res://textures/player/mario/small/walk.png" id="11_i4ail"]
+[ext_resource type="AudioStream" uid="uid://bhxmp70u556sv" path="res://audio/smw/player/jump.wav" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://3tmrcltmxqg4" path="res://scripts/player/state_machine.gd" id="12_a38lo"]
+[ext_resource type="AudioStream" uid="uid://vxfegf1r2emq" path="res://audio/smw/player/skid.wav" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://dhoh3e6fodvpv" path="res://scripts/player/state/dead.gd" id="15_i4ail"]
+[ext_resource type="Script" uid="uid://cplgnvd7cxo0d" path="res://scripts/player/state/idle.gd" id="15_qfm1y"]
+[ext_resource type="Script" uid="uid://b015ongubhblb" path="res://scripts/player/state/run.gd" id="16_qfm1y"]
+[ext_resource type="Script" uid="uid://dihbmdi2b6iu8" path="res://scripts/player/state/air.gd" id="17_4r5pv"]
+[ext_resource type="Script" uid="uid://nnfxleaxrsc8" path="res://scripts/player/state/duck.gd" id="18_4r5pv"]
+[ext_resource type="Script" uid="uid://7qunqnci5cyl" path="res://scripts/player/state/skid.gd" id="18_fulsm"]
+[ext_resource type="Script" uid="uid://ckk3i27le3koa" path="res://scripts/player/state/spin_jump.gd" id="19_spinj"]
+[ext_resource type="AudioStream" uid="uid://c345xnns7om3m" path="res://audio/smw/player/klock.ogg" id="20_60mlk"]
+[ext_resource type="AudioStream" uid="uid://dt7f4s3d4u5k6" path="res://audio/smw/player/spin_jump.wav" id="21_spinj"]
+[ext_resource type="AudioStream" uid="uid://cpvqy2k0d2cju" path="res://audio/smw/player/dead.ogg" id="22_a38lo"]
+[ext_resource type="AudioStream" uid="uid://b20440v3vqlik" path="res://audio/smw/player/powerup.wav" id="23_pwrup"]
+[ext_resource type="SpriteFrames" uid="uid://b1p8m6j6up5pm" path="res://textures/player/mario/super.tres" id="24_sprfm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lungf"]
+atlas = ExtResource("2_3v2ag")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouou7"]
+atlas = ExtResource("2_3v2ag")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6tgf"]
+atlas = ExtResource("3_jej6c")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnykm"]
+atlas = ExtResource("4_f1ej7")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u6hq"]
+atlas = ExtResource("5_oprun")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5rqy"]
+atlas = ExtResource("6_a8ls1")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5sgd"]
+atlas = ExtResource("7_qfm1y")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ki56"]
+atlas = ExtResource("8_fulsm")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saib0"]
+atlas = ExtResource("8_fulsm")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73kkf"]
+atlas = ExtResource("9_4r5pv")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogpgs"]
+atlas = ExtResource("10_60mlk")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spk56"]
+atlas = ExtResource("10_60mlk")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yk18"]
+atlas = ExtResource("10_60mlk")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4o2o"]
+atlas = ExtResource("10_60mlk")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4qa6"]
+atlas = ExtResource("11_i4ail")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss7kx"]
+atlas = ExtResource("11_i4ail")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a38lo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lungf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouou7")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6tgf")
+}],
+"loop": 1,
+"name": &"duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnykm")
+}],
+"loop": 0,
+"name": &"fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u6hq")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5rqy")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5sgd")
+}],
+"loop": 0,
+"name": &"p_jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ki56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saib0")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73kkf")
+}],
+"loop": 0,
+"name": &"skid",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogpgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spk56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yk18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4o2o")
+}],
+"loop": 1,
+"name": &"spin_jump",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4qa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss7kx")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(12, 10)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4r5pv"]
+lifetime_randomness = 0.29
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_damping_as_friction = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 2, 1)
+direction = Vector3(0, -1, 0)
+flatness = 0.29
+gravity = Vector3(0, 98, 0)
+scale_min = 1.1
+scale_max = 1.5
+
+[node name="Player" type="CharacterBody2D" unique_id=991822176]
+z_index = 2
+script = ExtResource("1_d2wvv")
+super_sprite_frames = ExtResource("24_sprfm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884496988]
+sprite_frames = SubResource("SpriteFrames_a38lo")
+animation = &"run"
+autoplay = "idle"
+
+[node name="StandingShape" type="CollisionShape2D" parent="." unique_id=411018769]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_d2wvv")
+
+[node name="DuckShape" type="CollisionShape2D" parent="." unique_id=1959836495]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_jej6c")
+disabled = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=1275602614 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("12_a38lo")
+initial_state = NodePath("Idle")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1476264408]
+script = ExtResource("15_i4ail")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=191902531]
+script = ExtResource("15_qfm1y")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=94996621]
+script = ExtResource("16_qfm1y")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="Air" type="Node" parent="StateMachine" unique_id=731890421]
+script = ExtResource("17_4r5pv")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="Duck" type="Node" parent="StateMachine" unique_id=343915362]
+script = ExtResource("18_4r5pv")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="Skid" type="Node" parent="StateMachine" unique_id=2120521197]
+script = ExtResource("18_fulsm")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="SpinJump" type="Node" parent="StateMachine" unique_id=674632180]
+script = ExtResource("19_spinj")
+metadata/_custom_type_script = "uid://dehduwtrwu8ar"
+
+[node name="SkidParticles" type="GPUParticles2D" parent="." unique_id=1600273507]
+position = Vector2(0, 14)
+emitting = false
+visibility_rect = Rect2(-100, -100.39, 200, 200)
+process_material = SubResource("ParticleProcessMaterial_4r5pv")
+
+[node name="Sound" type="Node" parent="." unique_id=1968830866]
+
+[node name="KlockSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=377240828]
+stream = ExtResource("20_60mlk")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1382500947]
+stream = ExtResource("12_3v2ag")
+
+[node name="SkidSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=676707138]
+stream = ExtResource("13_jej6c")
+
+[node name="DeadSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1035916672]
+stream = ExtResource("22_a38lo")
+
+[node name="SpinJumpSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1152462964]
+stream = ExtResource("21_spinj")
+
+[node name="PowerupSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1257593649]
+stream = ExtResource("23_pwrup")
