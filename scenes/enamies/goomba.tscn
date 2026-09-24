@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm4506a0g6pcc"]
+[gd_scene format=3 uid="uid://dm4506a0g6pcc"]
 
 [ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://textures/smw/entities/galoomba.png" id="1_21hcc"]
 [ext_resource type="Script" uid="uid://bydb6sts5pt4v" path="res://scripts/enemy/goomba.gd" id="1_s1jgw"]
@@ -20,7 +20,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fgpj4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -34,29 +34,33 @@ size = Vector2(12, 0.99999976)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xltp"]
 size = Vector2(15, 13)
 
-[node name="Goomba" type="CharacterBody2D"]
+[node name="Goomba" type="CharacterBody2D" unique_id=1493387846]
 collision_mask = 3
 script = ExtResource("1_s1jgw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1246720847]
 sprite_frames = SubResource("SpriteFrames_l0j8n")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.12779371
 
-[node name="PhysicsShape" type="CollisionShape2D" parent="."]
+[node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=1061338973]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_s1jgw")
 
-[node name="StompArea" type="Area2D" parent="."]
+[node name="StompArea" type="Area2D" parent="." unique_id=1868659478]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=1296751040]
 position = Vector2(2.3841858e-07, -7.500001)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_3hfl1")
 
-[node name="HurtArea" type="Area2D" parent="."]
+[node name="HurtArea" type="Area2D" parent="." unique_id=537972761]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=839997527]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_6xltp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1952827806]
+position = Vector2(0, -4)
+rect = Rect2(-35, 0, 70, 10)

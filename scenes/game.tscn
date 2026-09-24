@@ -5,13 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://bd32bdg1hr5al" path="res://textures/tiles/test.png" id="3_iywne"]
 [ext_resource type="AudioStream" uid="uid://c7xx82tvew4nu" path="res://audio/smw/music/overworld/play.ogg" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://416j3ilr0cp8" path="res://scenes/background.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://dm4506a0g6pcc" path="res://scenes/goomba.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://dm4506a0g6pcc" path="res://scenes/enamies/goomba.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://textures/tiles/ground.png" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://breuq34qljrjv" path="res://scenes/entities/mushroom.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://bubprsglac4jm" path="res://scenes/blocks/question_block.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dxj63hbpv6gwh" path="res://scenes/entities/coin_jump.tscn" id="10_kvuet"]
 [ext_resource type="PackedScene" uid="uid://c4wl45vrcbybd" path="res://scenes/blocks/spin_block.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cg565txcl1ock" path="res://scenes/blocks/brick_block.tscn" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://xux1ukoual24" path="res://scenes/entities/coin.tscn" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://blm1a30jaypgd" path="res://scenes/enamies/koopa_troopa.tscn" id="14_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
 texture = ExtResource("2_lbhrr")
@@ -1829,24 +1831,23 @@ item_scene = ExtResource("7_gee14")
 [node name="enemy" type="Node" parent="." unique_id=1298063351]
 
 [node name="Goomba" parent="enemy" unique_id=1177478481 instance=ExtResource("6_p57ef")]
-position = Vector2(-7, -56)
+position = Vector2(-239, -57)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 
 [node name="Goomba2" parent="enemy" unique_id=39086500 instance=ExtResource("6_p57ef")]
-position = Vector2(-16, -101)
+position = Vector2(-211, -58)
 
 [node name="Goomba3" parent="enemy" unique_id=2030938197 instance=ExtResource("6_p57ef")]
-position = Vector2(287, -58)
-
-[node name="Mushroom" parent="." unique_id=388819753 instance=ExtResource("7_gee14")]
-position = Vector2(340, -61)
+position = Vector2(-181, -58)
 
 [node name="QuestionBlock2" parent="." unique_id=674435154 instance=ExtResource("7_u5sy4")]
 position = Vector2(192, -104)
+item_scene = ExtResource("10_kvuet")
 
 [node name="QuestionBlock3" parent="." unique_id=1623128639 instance=ExtResource("7_u5sy4")]
 position = Vector2(176, -104)
+item_scene = ExtResource("10_kvuet")
 
 [node name="SpinBlock" parent="." unique_id=1754830407 instance=ExtResource("10_vtaks")]
 position = Vector2(208, -104)
@@ -1874,3 +1875,6 @@ position = Vector2(219, -206)
 
 [node name="Coin3" parent="." unique_id=1839947542 instance=ExtResource("12_dinhu")]
 position = Vector2(205, -206)
+
+[node name="KoopaTroopa" parent="." unique_id=1562944845 instance=ExtResource("14_trtic")]
+position = Vector2(310, -64)

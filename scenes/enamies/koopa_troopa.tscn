@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://blm1a30jaypgd"]
+
+[ext_resource type="Script" uid="uid://bm472p3h04vdv" path="res://scripts/enemy/koopa_troopa.gd" id="1_7wwcg"]
+[ext_resource type="Texture2D" uid="uid://cq7i6325k58s6" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Blue.png" id="1_i1tbb"]
+[ext_resource type="Texture2D" uid="uid://qdnjaj4gqtgf" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Green.png" id="3_gak4h"]
+[ext_resource type="Texture2D" uid="uid://b4jb1gsdw5cyw" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Red.png" id="4_hwemc"]
+[ext_resource type="Texture2D" uid="uid://2mc6wgg38e1x" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Yellow.png" id="5_mi14j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wwcg"]
+atlas = ExtResource("1_i1tbb")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlasb"]
+atlas = ExtResource("1_i1tbb")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wtx6"]
+atlas = ExtResource("3_gak4h")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63jc8"]
+atlas = ExtResource("3_gak4h")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itwet"]
+atlas = ExtResource("4_hwemc")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg4xv"]
+atlas = ExtResource("4_hwemc")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8351"]
+atlas = ExtResource("5_mi14j")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8tu1"]
+atlas = ExtResource("5_mi14j")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0t3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wwcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlasb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wtx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63jc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itwet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg4xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8351")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8tu1")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1tbb"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wwcg"]
+size = Vector2(12, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlasb"]
+size = Vector2(16, 15)
+
+[node name="KoopaTroopa" type="CharacterBody2D" unique_id=1562944845]
+collision_mask = 3
+script = ExtResource("1_7wwcg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1029229174]
+sprite_frames = SubResource("SpriteFrames_j0t3q")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.22115107
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=165813126]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_i1tbb")
+
+[node name="StompArea" type="Area2D" parent="." unique_id=1309929031]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=337261448]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_7wwcg")
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=1222958240]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=897893520]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_vlasb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2048775852]
+rect = Rect2(-35, 0, 70, 10)

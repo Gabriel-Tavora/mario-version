@@ -2,35 +2,45 @@ extends InteractableBlock
 
 @export var item_scene: PackedScene
 
+const DEFAULT_ITEM_SCENE := preload("res://scenes/entities/coin_jump.tscn")
 
 func _trigger_effect(player: Player) -> void:
 	if current_state == State.EMPTY:
 		return
 
-	# Som do bloco
 	SoundManager.play_bump()
-
 	current_state = State.EMPTY
 	sprite.play("empty")
 
-	if item_scene:
-		var item = item_scene.instantiate()
-		get_parent().add_child(item)
+	var scene_to_spawn := item_scene
 
-		item.global_position = global_position
+	if scene_to_spawn == null:
+		scene_to_spawn = DEFAULT_ITEM_SCENE
 
-		item.set_physics_process(false)
+	var item = scene_to_spawn.instantiate()
 
-		var tween = create_tween()
-		var target_position = global_position + Vector2(0, -16)
+	if item == null:
+		return
 
-		tween.tween_property(
-			item,
-			"global_position",
-			target_position,
-			0.7
-		)
+	get_parent().add_child(item)
+	item.global_position = global_position
 
-		tween.tween_callback(func():
-			item.set_physics_process(true)
-		)
+	if item is CoinJump:
+		item.start_coin_jump()
+		return
+
+	item.set_physics_process(false)
+
+	var tween = create_tween()
+	var target_position = global_position + Vector2(0, -16)
+
+	tween.tween_property(
+		item,
+		"global_position",
+		target_position,
+		0.7
+	)
+
+	tween.tween_callback(func():
+		if is_instance_valid(item):
+			item.set_physics_process(true))

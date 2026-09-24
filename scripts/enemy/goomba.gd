@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-var dir =  -1
+var dir = -1
 var speed = 40.0
 var is_dead = false
 
@@ -9,14 +9,17 @@ var is_dead = false
 @onready var physics_shape: CollisionShape2D = $PhysicsShape
 @onready var stomp_area: Area2D = $StompArea
 @onready var hurt_area: Area2D = $HurtArea
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 func _ready() -> void:
 	sprite.play("idle")
 	stomp_area.body_entered.connect(_on_stomp_area_entered)
 	hurt_area.body_entered.connect(_on_hurt_area_entered)
 
-
 func _physics_process(delta: float) -> void:
+	if not visible_on_screen_notifier_2d.is_on_screen() and not is_dead:
+		return
+
 	sprite.flip_h = dir < 0
 
 	if not is_on_floor():
@@ -27,19 +30,17 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		if is_on_floor():
 			velocity.x = 0
-			
+
 		move_and_slide()
+
 		if global_position.y > 1000:
 			queue_free()
 		return
 
-
-
 	move_and_slide()
-	
+
 	if is_on_wall():
 		dir *= -1
-
 
 func _on_stomp_area_entered(body: Node2D) -> void:
 	if is_dead:
@@ -54,6 +55,7 @@ func _on_stomp_area_entered(body: Node2D) -> void:
 func _on_hurt_area_entered(body: Node2D) -> void:
 	if is_dead:
 		return
+
 	if body is Player:
 		body.die()
 

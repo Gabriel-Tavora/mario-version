@@ -30,6 +30,9 @@ func _ready() -> void:
 
 		sprite.texture = texture
 
+		# Diminui o tamanho de cada pedaço
+		sprite.scale = Vector2(0.5, 0.5)
+
 		if is_instance_valid(texture):
 			var h_frames = texture.get_width() / sprite_size
 			h_frames = clamp(h_frames, 1, 9999)

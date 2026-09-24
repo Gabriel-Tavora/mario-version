@@ -2,7 +2,7 @@ extends InteractableBlock
 class_name BrickBlock
 
 const FOUR_PART_BREAK = preload("res://scenes/blocks/4_part_break_particle.tscn")
-const BRICK_BREAK = preload("res://textures/Sprites/Particles/BrickBreak.png")
+const BRICK_BREAK = preload("res://textures/Sprites/Particles/BlockBreak.png")
 
 var can_break := true
 
@@ -11,7 +11,7 @@ func _trigger_effect(player: Player) -> void:
 	if player.power_form == Player.PowerForm.SUPER:
 		break_block()
 	else:
-		SoundManager.play_shatter()
+		SoundManager.play_bump()
 
 
 func break_block() -> void:

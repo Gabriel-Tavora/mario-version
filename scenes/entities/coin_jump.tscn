@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dxj63hbpv6gwh"]
+
+[ext_resource type="Script" uid="uid://bftaak02kk1n2" path="res://scripts/entities/coin_jump.gd" id="1_6p0jt"]
+[ext_resource type="Texture2D" uid="uid://dmkiltbmecuxq" path="res://textures/Sprites/Items/PhysicsCoin.png" id="2_kn3ng"]
+[ext_resource type="Texture2D" uid="uid://dwdxfiisy3idf" path="res://textures/Sprites/Particles/Puff.png" id="3_kn3ng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xku34"]
+atlas = ExtResource("2_kn3ng")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2yqv"]
+atlas = ExtResource("2_kn3ng")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgfyo"]
+atlas = ExtResource("2_kn3ng")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7nd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xku34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2yqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgfyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2yqv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imra5"]
+atlas = ExtResource("3_kn3ng")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puotc"]
+atlas = ExtResource("3_kn3ng")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bka4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imra5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imra5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puotc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puotc")
+}],
+"loop": 0,
+"name": &"particles",
+"speed": 40.0
+}]
+
+[node name="coin_jump" type="CharacterBody2D" unique_id=1743024863]
+script = ExtResource("1_6p0jt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=244640311]
+sprite_frames = SubResource("SpriteFrames_x7nd1")
+frame = 2
+frame_progress = 0.49750304
+
+[node name="Timer" type="Timer" parent="." unique_id=2051769104]
+wait_time = 0.8
+one_shot = true
+
+[node name="Particles" type="AnimatedSprite2D" parent="." unique_id=89473731]
+sprite_frames = SubResource("SpriteFrames_bka4f")
+animation = &"particles"

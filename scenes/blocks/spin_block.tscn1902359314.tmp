@@ -16,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bka4f"]
-size = Vector2(10, 4)
+size = Vector2(10, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7nd1"]
 size = Vector2(16, 16)
@@ -31,7 +31,7 @@ sprite_frames = SubResource("SpriteFrames_bka4f")
 [node name="SpinJumpArea" type="Area2D" parent="." unique_id=1759299036]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpinJumpArea" unique_id=1952447853]
-position = Vector2(0, -10)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_bka4f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745055538]

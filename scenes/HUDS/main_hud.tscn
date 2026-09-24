@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://dqjqb7wxkjkh1"]
+
+[ext_resource type="Texture2D" uid="uid://ba65dunp68ehu" path="res://textures/Sprites/Characters/Mario/HUDTitle.png" id="1_1rhim"]
+[ext_resource type="Texture2D" uid="uid://bp62wfmjw0ost" path="res://textures/Sprites/UI/HUD/HUDX.png" id="2_4sehe"]
+[ext_resource type="FontFile" uid="uid://bhqyq3yxbvqkd" path="res://textures/Sprites/UI/HUD/HUDFont.png" id="3_v6nm7"]
+[ext_resource type="Texture2D" uid="uid://mjp1jtb61m4p" path="res://textures/Sprites/UI/HUD/StarCount.png" id="4_x15p4"]
+[ext_resource type="FontFile" uid="uid://c5xts2bvjtjs3" path="res://textures/Sprites/UI/HUD/CreditsFont.png" id="5_xhake"]
+[ext_resource type="Texture2D" uid="uid://dexhjackjngwp" path="res://textures/Sprites/UI/StatusScreen/Icons/CoinEmpty.png" id="6_8odhw"]
+[ext_resource type="Texture2D" uid="uid://skqwt20akaxl" path="res://textures/Sprites/UI/ItemBox.png" id="7_son70"]
+[ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://textures/smw/entities/mushroom.png" id="8_el6n7"]
+
+[node name="MainHUD" type="Control" unique_id=1211889060]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -672.0
+offset_bottom = -378.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Control" parent="." unique_id=265762469]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Lives" type="Control" parent="Container" unique_id=39213055]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 8.0
+offset_right = 105.0
+offset_bottom = 24.0
+
+[node name="PlayerTitle" type="TextureRect" parent="Container/Lives" unique_id=1839146299]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 8.0
+texture = ExtResource("1_1rhim")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MultiplayerLetters" type="HBoxContainer" parent="Container/Lives" unique_id=496255355]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player1" type="TextureRect" parent="Container/Lives/MultiplayerLetters" unique_id=223487164]
+layout_mode = 2
+
+[node name="Player2" type="TextureRect" parent="Container/Lives/MultiplayerLetters" unique_id=504370794]
+layout_mode = 2
+
+[node name="Player3" type="TextureRect" parent="Container/Lives/MultiplayerLetters" unique_id=450765894]
+layout_mode = 2
+
+[node name="Player4" type="TextureRect" parent="Container/Lives/MultiplayerLetters" unique_id=251165095]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Lives" unique_id=1722644996]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="X" type="TextureRect" parent="Container/Lives/HBoxContainer" unique_id=1018128986]
+layout_mode = 2
+texture = ExtResource("2_4sehe")
+stretch_mode = 3
+
+[node name="LifeCount" type="Label" parent="Container/Lives/HBoxContainer" unique_id=2031359224]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_v6nm7")
+text = "_"
+
+[node name="StarPoints" type="HBoxContainer" parent="Container" unique_id=177269452]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.375
+anchor_bottom = 0.75
+offset_right = 4.0
+offset_bottom = 7.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Container/StarPoints" unique_id=2101256328]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DragonCoins" type="HBoxContainer" parent="Container/StarPoints/VBoxContainer" unique_id=188094460]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/StarPoints/VBoxContainer" unique_id=1476292109]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+texture = ExtResource("4_x15p4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Container/StarPoints" unique_id=1744799256]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_xhake")
+text = "00"
+
+[node name="PeachCoin" type="TextureRect" parent="Container/StarPoints" unique_id=1546659579]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("6_8odhw")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="ItemBox" type="Control" parent="Container" unique_id=1717210615]
+anchors_preset = 0
+offset_left = 205.714
+offset_right = 274.286
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="Container/ItemBox" unique_id=1579395864]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_right = 0.93
+anchor_bottom = 1.0
+texture = ExtResource("7_son70")
+stretch_mode = 3
+
+[node name="Time" type="Control" parent="Container" unique_id=1679323254]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Container/Time" unique_id=2037480075]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Time" unique_id=918027562]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Container/Time/HBoxContainer" unique_id=230801372]
+layout_mode = 2
+
+[node name="Pad" type="Control" parent="Container/Time/HBoxContainer" unique_id=2131050943]
+layout_mode = 2
+
+[node name="Score" type="Control" parent="Container" unique_id=206173458]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Coins" type="HBoxContainer" parent="Container/Score" unique_id=798426753]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Container/Score/Coins" unique_id=329111951]
+layout_mode = 2
+
+[node name="Title2" type="TextureRect" parent="Container/Score/Coins" unique_id=1051091074]
+layout_mode = 2
+
+[node name="ItemBoxSprite" type="Sprite2D" parent="." unique_id=970349359]
+position = Vector2(240, 16)
+texture = ExtResource("8_el6n7")
+
+[node name="PauseMenu" type="Control" parent="." unique_id=274476620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
