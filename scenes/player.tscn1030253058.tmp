@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cou60ypt1a6cn" path="res://scripts/player/state/player.gd" id="1_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://c2ghbdcbsyk30" path="res://textures/player/mario/dead.png" id="2_3v2ag"]
-[ext_resource type="SpriteFrames" uid="uid://c5i21sd6ul0ht" path="res://textures/player/mario/Big.tres" id="2_dt7fs"]
-[ext_resource type="SpriteFrames" uid="uid://d3l6pd76hs4gf" path="res://textures/player/mario/Fire.tres" id="3_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://textures/player/mario/small/duck.png" id="3_jej6c"]
 [ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://textures/player/mario/small/fall.png" id="4_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://textures/player/mario/small/idle.png" id="5_oprun"]
@@ -29,14 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dt7f4s3d4u5k6" path="res://audio/smw/player/spin_jump.wav" id="21_spinj"]
 [ext_resource type="AudioStream" uid="uid://cpvqy2k0d2cju" path="res://audio/smw/player/dead.ogg" id="22_a38lo"]
 [ext_resource type="AudioStream" uid="uid://b20440v3vqlik" path="res://audio/smw/player/powerup.wav" id="23_pwrup"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
-atlas = ExtResource("6_pf23h")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
-atlas = ExtResource("7_dt7fs")
-region = Rect2(0, 0, 32, 32)
+[ext_resource type="SpriteFrames" uid="uid://b1p8m6j6up5pm" path="res://textures/player/mario/super.tres" id="24_sprfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lungf"]
 atlas = ExtResource("2_3v2ag")
@@ -53,6 +44,14 @@ region = Rect2(0, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnykm"]
 atlas = ExtResource("4_f1ej7")
 region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("6_pf23h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
+atlas = ExtResource("7_dt7fs")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u6hq"]
 atlas = ExtResource("5_oprun")
@@ -106,35 +105,12 @@ region = Rect2(16, 0, 16, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wqfne")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wnwbv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqfne")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wnwbv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqfne")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wnwbv")
-}],
-"loop": 0,
-"name": &"Grow",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_lungf")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ouou7")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"dead",
 "speed": 4.0
 }, {
@@ -153,6 +129,29 @@ animations = [{
 "loop": 0,
 "name": &"fall",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}],
+"loop": 1,
+"name": &"grow",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -248,12 +247,14 @@ scale_max = 1.5
 [node name="Player" type="CharacterBody2D" unique_id=991822176]
 z_index = 2
 script = ExtResource("1_d2wvv")
-super_sprite_frames = ExtResource("2_dt7fs")
-fire_sprite_frames = ExtResource("3_dt7fs")
+super_sprite_frames = ExtResource("24_sprfm")
+GRAVITY = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884496988]
 sprite_frames = SubResource("SpriteFrames_a38lo")
-animation = &"Grow"
+animation = &"grow"
+autoplay = "idle"
+frame_progress = 0.271557
 
 [node name="StandingShape" type="CollisionShape2D" parent="." unique_id=411018769]
 position = Vector2(0, 7.5)

@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-enum PowerForm { SMALL, SUPER }
+enum PowerForm { SMALL, SUPER, FIRE }
 
 @onready var state_machine: Node = $StateMachine
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -13,8 +13,8 @@ enum PowerForm { SMALL, SUPER }
 @onready var dead_sound: AudioStreamPlayer2D = $Sound/DeadSound
 @onready var spin_jump_sound: AudioStreamPlayer2D = $Sound/SpinJumpSound
 @onready var powerup_sound: AudioStreamPlayer2D = $Sound/PowerupSound
-
 @export var super_sprite_frames: SpriteFrames
+@export var fire_sprite_frames: SpriteFrames
 
 var small_sprite_frames: SpriteFrames
 var power_form: PowerForm = PowerForm.SMALL
@@ -32,10 +32,54 @@ const SPIN_JUMP_VELOCITY = -280.0
 @export var GRAVITY = 900.0
 
 var is_priming_jump := false
+var is_invulnerable := false
+var is_power_down := false
 
 func die() -> void:
+	if is_invulnerable:
+		return
+
+	if power_form == PowerForm.SUPER:
+		power_down()
+		return
+
 	velocity = Vector2.ZERO
 	state_machine.change_state(state_machine.dead)
+
+func power_down() -> void:
+	if is_power_down:
+		return
+
+	is_power_down = true
+	is_invulnerable = true
+	velocity = Vector2.ZERO
+
+	animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
+	animated_sprite.speed_scale = 1.0
+
+	get_tree().paused = true
+
+	animated_sprite.play("Shrink")
+	powerup_sound.play()
+
+	await animated_sprite.animation_finished
+
+	set_form(PowerForm.SMALL)
+
+	get_tree().paused = false
+
+	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+
+	for i in 6:
+		animated_sprite.visible = false
+		await get_tree().create_timer(0.08, true).timeout
+		animated_sprite.visible = true
+		await get_tree().create_timer(0.08, true).timeout
+
+	animated_sprite.visible = true
+	is_invulnerable = false
+	is_power_down = false
 
 func bounce() -> void:
 	is_priming_jump = Input.is_action_pressed("player_jump")
@@ -47,11 +91,14 @@ func bounce() -> void:
 
 func _ready() -> void:
 	small_sprite_frames = animated_sprite.sprite_frames
+	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
 	state_machine.init(self)
 
 func set_form(form: PowerForm) -> void:
 	if form == power_form:
 		return
+
 	power_form = form
 
 	match form:
@@ -59,21 +106,44 @@ func set_form(form: PowerForm) -> void:
 			animated_sprite.sprite_frames = small_sprite_frames
 			standing_shape.position = Vector2(0, 7.5)
 			standing_shape.shape.size = Vector2(12, 15)
+
 		PowerForm.SUPER:
 			animated_sprite.sprite_frames = super_sprite_frames
 			standing_shape.position = Vector2(0, 0)
 			standing_shape.shape.size = Vector2(16, 30)
-			powerup_sound.play()
 
-	var current_anim = animated_sprite.animation
-	if animated_sprite.sprite_frames.has_animation(current_anim):
-		animated_sprite.play(current_anim)
+		PowerForm.FIRE:
+			animated_sprite.sprite_frames = fire_sprite_frames
+			standing_shape.position = Vector2(0, 0)
+			standing_shape.shape.size = Vector2(16, 30)
+			animated_sprite.play("Idle")
 
 func collect_mushroom() -> void:
-	set_form(PowerForm.SUPER)
+	if power_form != PowerForm.SMALL:
+		return
 
-func _physics_process(delta: float)-> void:
+	await grow_animation()
 
+	if power_form == PowerForm.SMALL:
+		set_form(PowerForm.FIRE)
+
+func grow_animation() -> void:
+	animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+	animated_sprite.speed_scale = 1.0
+
+	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	get_tree().paused = true
+
+	animated_sprite.play("Grow")
+	powerup_sound.play()
+
+	await animated_sprite.animation_finished
+
+	get_tree().paused = false
+	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+
+func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	_attempt_correction(delta, 2)
 
@@ -86,11 +156,11 @@ func _physics_process(delta: float)-> void:
 	if is_on_ceiling():
 		for i in get_slide_collision_count():
 			var col = get_slide_collision(i)
-			var collider = col.get_collider() 
+			var collider = col.get_collider()
+
 			if collider is InteractableBlock:
 				if col.get_normal().y > 0.5:
 					velocity.y = 10.0
-
 					collider.hit_by_player(self)
 					break
 
@@ -106,8 +176,8 @@ func _attempt_correction(delta: float, amount: int) -> void:
 						Vector2(0, velocity.y * delta)
 				):
 					translate(Vector2(i * j / 2, 0))
+
 					if velocity.x * j / 2 < 0:
 						velocity.x = 0
-					return
 
-	
+					return

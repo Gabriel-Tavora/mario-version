@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1om4dc2t1bgp"]
+
+[ext_resource type="PackedScene" uid="uid://dqjqb7wxkjkh1" path="res://scenes/HUDS/main_hud.tscn" id="1_t1cwj"]
+[ext_resource type="PackedScene" uid="uid://r5hdie18hlii" path="res://scenes/HUDS/pause_menu.tscn" id="2_yw7gu"]
+
+[node name="HUD" type="CanvasLayer" unique_id=144846199]
+
+[node name="Control" type="Control" parent="." unique_id=196766341]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainHUD" parent="Control" unique_id=1211889060 instance=ExtResource("1_t1cwj")]
+layout_mode = 1
+
+[node name="PauseMenu" parent="Control" unique_id=1891068532 instance=ExtResource("2_yw7gu")]
+layout_mode = 1

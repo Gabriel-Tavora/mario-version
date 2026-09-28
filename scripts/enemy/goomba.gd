@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+const PUFF_SCENE = preload("res://scenes/vfx/puff.tscn")
+
 var dir = -1
 var speed = 40.0
 var is_dead = false
@@ -70,4 +72,21 @@ func die() -> void:
 
 	var tween = create_tween()
 	sprite.rotation_degrees = 0
-	tween.tween_property(sprite, "rotation_degrees", 360, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		sprite,
+		"rotation_degrees",
+		360,
+		0.3
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	await tween.finished
+
+	sprite.visible = false
+	physics_shape.set_deferred("disabled", true)
+
+	var puff = PUFF_SCENE.instantiate()
+	puff.global_position = global_position + Vector2(0, -4)
+	get_tree().current_scene.add_child(puff)
+
+	puff.play_puff()
+	queue_free()

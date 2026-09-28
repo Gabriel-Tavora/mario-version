@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qdnjaj4gqtgf" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Green.png" id="3_gak4h"]
 [ext_resource type="Texture2D" uid="uid://b4jb1gsdw5cyw" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Red.png" id="4_hwemc"]
 [ext_resource type="Texture2D" uid="uid://2mc6wgg38e1x" path="res://textures/Sprites/Enemys/Koopas/KoopaTroopas/Yellow.png" id="5_mi14j"]
+[ext_resource type="PackedScene" uid="uid://c4eykaqbpirwa" path="res://scenes/vfx/Puff.tscn" id="6_hwemc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wwcg"]
 atlas = ExtResource("1_i1tbb")
@@ -107,3 +108,5 @@ shape = SubResource("RectangleShape2D_vlasb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2048775852]
 rect = Rect2(-35, 0, 70, 10)
+
+[node name="Puff" parent="." unique_id=260655030 instance=ExtResource("6_hwemc")]

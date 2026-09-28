@@ -1,7 +1,77 @@
 [gd_scene format=3 uid="uid://r5hdie18hlii"]
 
+[ext_resource type="Script" uid="uid://couj3j8766mg3" path="res://scripts/HUD/pause_menu.gd" id="1_qe1gp"]
+[ext_resource type="Texture2D" uid="uid://kjiw82n0hfn2" path="res://textures/Sprites/UI/PauseBox.png" id="2_xqgwu"]
+[ext_resource type="FontFile" uid="uid://lfpsqjjnmb8i" path="res://textures/Sprites/UI/Font.png" id="3_rt4te"]
+[ext_resource type="Texture2D" uid="uid://vmnatqkj2lio" path="res://textures/Sprites/UI/Arrow.png" id="4_3gbj6"]
+
 [node name="PauseMenu" type="Control" unique_id=1891068532]
+process_mode = 3
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qe1gp")
+
+[node name="Box" type="NinePatchRect" parent="." unique_id=1140817433]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -28.0
+offset_right = 50.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xqgwu")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Box" unique_id=983254242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 9
+
+[node name="VBox" type="VBoxContainer" parent="Box/MarginContainer" unique_id=571232125]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Box/MarginContainer/VBox" unique_id=1411372697]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_rt4te")
+text = "Continue"
+
+[node name="Label2" type="Label" parent="Box/MarginContainer/VBox" unique_id=130727902]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_rt4te")
+text = "Restart"
+
+[node name="Label3" type="Label" parent="Box/MarginContainer/VBox" unique_id=1809432684]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_rt4te")
+text = "Sair"
+
+[node name="Arrow" type="TextureRect" parent="." unique_id=1993743922]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 131.0
+offset_right = 200.0
+offset_bottom = 139.0
+texture = ExtResource("4_3gbj6")
+flip_h = true

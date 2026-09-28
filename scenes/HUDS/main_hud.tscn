@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqjqb7wxkjkh1"]
 
 [ext_resource type="Texture2D" uid="uid://ba65dunp68ehu" path="res://textures/Sprites/Characters/Mario/HUDTitle.png" id="1_1rhim"]
+[ext_resource type="Script" uid="uid://cukmrfgsdajnd" path="res://scripts/HUD/main_hud.gd" id="1_xhake"]
 [ext_resource type="Texture2D" uid="uid://bp62wfmjw0ost" path="res://textures/Sprites/UI/HUD/HUDX.png" id="2_4sehe"]
 [ext_resource type="FontFile" uid="uid://bhqyq3yxbvqkd" path="res://textures/Sprites/UI/HUD/HUDFont.png" id="3_v6nm7"]
 [ext_resource type="Texture2D" uid="uid://mjp1jtb61m4p" path="res://textures/Sprites/UI/HUD/StarCount.png" id="4_x15p4"]
@@ -8,16 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://dexhjackjngwp" path="res://textures/Sprites/UI/StatusScreen/Icons/CoinEmpty.png" id="6_8odhw"]
 [ext_resource type="Texture2D" uid="uid://skqwt20akaxl" path="res://textures/Sprites/UI/ItemBox.png" id="7_son70"]
 [ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://textures/smw/entities/mushroom.png" id="8_el6n7"]
+[ext_resource type="Texture2D" uid="uid://bq4jmd560h3uy" path="res://textures/Sprites/UI/HUD/TimeCount.png" id="8_x15p4"]
+[ext_resource type="Texture2D" uid="uid://bbagurfomroyy" path="res://textures/Sprites/UI/HUD/CoinCount.png" id="9_xhake"]
 
 [node name="MainHUD" type="Control" unique_id=1211889060]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -672.0
-offset_bottom = -378.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xhake")
 
 [node name="Container" type="Control" parent="." unique_id=265762469]
 custom_minimum_size = Vector2(0, 32)
@@ -131,50 +133,79 @@ texture = ExtResource("7_son70")
 stretch_mode = 3
 
 [node name="Time" type="Control" parent="Container" unique_id=1679323254]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchor_left = 0.594
+anchor_right = 0.688
+anchor_bottom = 0.75
+offset_top = 8.0
+offset_right = -0.120025635
 
 [node name="TextureRect" type="TextureRect" parent="Container/Time" unique_id=2037480075]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+texture = ExtResource("8_x15p4")
+stretch_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container/Time" unique_id=918027562]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Label" type="Label" parent="Container/Time/HBoxContainer" unique_id=230801372]
+modulate = Color(0.972549, 0.84705883, 0.4392157, 1)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_v6nm7")
+text = "989"
 
 [node name="Pad" type="Control" parent="Container/Time/HBoxContainer" unique_id=2131050943]
+custom_minimum_size = Vector2(7, 0)
 layout_mode = 2
 
 [node name="Score" type="Control" parent="Container" unique_id=206173458]
-anchors_preset = 0
+layout_mode = 1
+anchor_left = 0.719
+anchor_top = 0.25
+anchor_right = 0.938
+anchor_bottom = 0.75
+offset_left = 43.880005
+offset_right = 31.75998
+
+[node name="ScoreText" type="Label" parent="Container/Score" unique_id=352924532]
+layout_mode = 0
+offset_top = 16.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("3_v6nm7")
+text = "00000"
 
 [node name="Coins" type="HBoxContainer" parent="Container/Score" unique_id=798426753]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="TextureRect" parent="Container/Score/Coins" unique_id=1051091074]
+layout_mode = 2
+texture = ExtResource("9_xhake")
+stretch_mode = 3
 
 [node name="Label" type="Label" parent="Container/Score/Coins" unique_id=329111951]
 layout_mode = 2
-
-[node name="Title2" type="TextureRect" parent="Container/Score/Coins" unique_id=1051091074]
-layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_v6nm7")
+text = "00"
 
 [node name="ItemBoxSprite" type="Sprite2D" parent="." unique_id=970349359]
 position = Vector2(240, 16)
 texture = ExtResource("8_el6n7")
-
-[node name="PauseMenu" type="Control" parent="." unique_id=274476620]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

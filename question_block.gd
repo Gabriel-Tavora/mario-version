@@ -23,7 +23,7 @@ func _trigger_effect(player: Player) -> void:
 		return
 
 	get_parent().add_child(item)
-	item.global_position = global_position
+	item.global_position = global_position + Vector2(0, -8)
 
 	if item is CoinJump:
 		item.start_coin_jump()

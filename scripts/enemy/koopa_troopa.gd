@@ -1,6 +1,8 @@
 class_name Koopa
 extends CharacterBody2D
 
+const PUFF_SCENE = preload("res://scenes/vfx/puff.tscn")
+
 const SPEED := 40.0
 const GRAVITY := 900.0
 const SHELL_SCENE = preload("res://scenes/enamies/koopa_shell.tscn")
@@ -50,4 +52,11 @@ func enter_shell() -> void:
 	shell.velocity = Vector2.ZERO
 	shell.direction = 0
 	shell.shell_moving = false
+
+	var puff = PUFF_SCENE.instantiate()
+	puff.global_position = global_position + Vector2(0, -4)
+	get_tree().current_scene.add_child(puff)
+
+	puff.play_puff()
+
 	queue_free()
