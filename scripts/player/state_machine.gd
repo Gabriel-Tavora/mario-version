@@ -11,6 +11,7 @@ var current_state: State
 @onready var skid: State = $Skid
 @onready var dead: State = $Dead
 @onready var spin_jump: State = $SpinJump
+@onready var ground_pound: State = $GroundPound
 
 func init(player: Player) -> void:
 	for child in get_children():

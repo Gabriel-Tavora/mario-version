@@ -25,6 +25,7 @@ config/icon="res://icon.svg"
 
 SoundManager="*uid://2dey17qpbxlh"
 GameManager="*uid://jxgxnsbsd7e2"
+ParticleManager="*uid://hgi3ow32fuqq"
 
 [display]
 

@@ -15,7 +15,7 @@ func enter() -> void:
 
 	player.dead_sound.play()
 	is_hovering = true
-	player.animated_sprite.play("dead")
+	player.animated_sprite.play("Dead")
 	player.velocity = Vector2.ZERO
 	
 	player.standing_shape.set_deferred("disabled", true)

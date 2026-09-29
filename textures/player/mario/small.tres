@@ -1,6 +1,8 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dj162d0blqj4r"]
 
 [ext_resource type="Texture2D" uid="uid://cldtyqu3ehwrm" path="res://textures/Sprites/Characters/Mario/Small.png" id="1_nk7xe"]
+[ext_resource type="Texture2D" uid="uid://b0px7xn2h3jc2" path="res://textures/Sprites/Characters/Mario/Big.png" id="2_2al5v"]
+[ext_resource type="Texture2D" uid="uid://ckqpyedl1qf3s" path="res://textures/Sprites/Characters/Mario/Fire.png" id="3_uocoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_huusp"]
 atlas = ExtResource("1_nk7xe")
@@ -257,6 +259,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouva4"]
 atlas = ExtResource("1_nk7xe")
 region = Rect2(384, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uocoy"]
+atlas = ExtResource("2_2al5v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yqlu"]
+atlas = ExtResource("3_uocoy")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iaijs"]
 atlas = ExtResource("1_nk7xe")
@@ -801,7 +811,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ch51y")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"Flip",
 "speed": 20.0
 }, {
@@ -809,7 +819,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1b83y")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"GroundPoundAir",
 "speed": 5.0
 }, {
@@ -817,7 +827,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_juclo")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"GroundPoundLand",
 "speed": 5.0
 }, {
@@ -827,9 +837,50 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3l1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"Grow",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3l1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3l1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlu")
+}],
+"loop": 0,
+"name": &"GrowFire",
 "speed": 15.0
 }, {
 "frames": [{

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ckqpyedl1qf3s" path="res://textures/Sprites/Characters/Mario/Fire.png" id="1_jtyo4"]
 [ext_resource type="Texture2D" uid="uid://cldtyqu3ehwrm" path="res://textures/Sprites/Characters/Mario/Small.png" id="2_wb1c8"]
+[ext_resource type="Texture2D" uid="uid://b0px7xn2h3jc2" path="res://textures/Sprites/Characters/Mario/Big.png" id="3_4d3q5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nl0cu"]
 atlas = ExtResource("1_jtyo4")
@@ -268,6 +269,14 @@ atlas = ExtResource("2_wb1c8")
 region = Rect2(384, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3xhn"]
+atlas = ExtResource("1_jtyo4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uocoy"]
+atlas = ExtResource("3_4d3q5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yqlu"]
 atlas = ExtResource("1_jtyo4")
 region = Rect2(0, 0, 32, 32)
 
@@ -865,6 +874,29 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Grow",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uocoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlu")
+}],
+"loop": 0,
+"name": &"GrowFire",
 "speed": 15.0
 }, {
 "frames": [{

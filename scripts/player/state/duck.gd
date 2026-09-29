@@ -6,7 +6,7 @@ var vfx_timer: float = 0.0
 const VFX_COOLDOWN := 0.1
 
 func enter() -> void:
-	player.animated_sprite.play("duck")
+	player.animated_sprite.play("Duck")
 	player.standing_shape.disabled = true
 	player.duck_shape.disabled = false
 

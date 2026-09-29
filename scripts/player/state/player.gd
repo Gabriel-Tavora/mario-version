@@ -13,6 +13,7 @@ enum PowerForm { SMALL, SUPER, FIRE }
 @onready var dead_sound: AudioStreamPlayer2D = $Sound/DeadSound
 @onready var spin_jump_sound: AudioStreamPlayer2D = $Sound/SpinJumpSound
 @onready var powerup_sound: AudioStreamPlayer2D = $Sound/PowerupSound
+@export var small_sprite_frames_new: SpriteFrames
 @export var super_sprite_frames: SpriteFrames
 @export var fire_sprite_frames: SpriteFrames
 
@@ -103,9 +104,10 @@ func set_form(form: PowerForm) -> void:
 
 	match form:
 		PowerForm.SMALL:
-			animated_sprite.sprite_frames = small_sprite_frames
+			animated_sprite.sprite_frames = small_sprite_frames_new
 			standing_shape.position = Vector2(0, 7.5)
 			standing_shape.shape.size = Vector2(12, 15)
+			animated_sprite.play("Idle")
 
 		PowerForm.SUPER:
 			animated_sprite.sprite_frames = super_sprite_frames
@@ -125,7 +127,7 @@ func collect_mushroom() -> void:
 	await grow_animation()
 
 	if power_form == PowerForm.SMALL:
-		set_form(PowerForm.FIRE)
+		set_form(PowerForm.SUPER)
 
 func grow_animation() -> void:
 	animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -181,3 +183,26 @@ func _attempt_correction(delta: float, amount: int) -> void:
 						velocity.x = 0
 
 					return
+
+
+func grow_fire_animation() -> void:
+	animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
+	animated_sprite.speed_scale = 1.0
+	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	get_tree().paused = true
+
+	animated_sprite.play("GrowFire")
+	powerup_sound.play()
+
+	await animated_sprite.animation_finished
+
+	get_tree().paused = false
+	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
+
+func collect_fire_flower() -> void:
+	if power_form == PowerForm.FIRE:
+		return
+
+	await grow_fire_animation()
+	set_form(PowerForm.FIRE)

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bxjhucrhp0dv1"]
+
+[ext_resource type="Script" uid="uid://3p780nmpiktc" path="res://scripts/entities/fire_flower.gd" id="1_swvlk"]
+[ext_resource type="Texture2D" uid="uid://duob0l0048qvl" path="res://textures/Sprites/Thumbnails/Items/FireFlower.png" id="2_rarib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_til3n"]
+size = Vector2(14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7nd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rarib")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
+size = Vector2(16, 16)
+
+[node name="FireFlower" type="CharacterBody2D" unique_id=1108010899]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_swvlk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1275728748]
+shape = SubResource("RectangleShape2D_til3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1879540553]
+sprite_frames = SubResource("SpriteFrames_x7nd1")
+animation = &"idle"
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=433933705]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1383732864]
+shape = SubResource("RectangleShape2D_pickup")

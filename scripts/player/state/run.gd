@@ -50,8 +50,8 @@ func physics_update(delta: float) -> void:
 	var speed_ratio: float = abs(player.velocity.x) / player.max_run_speed
 
 	if abs(player.velocity.x) >= player.max_walk_speed:
-		player.animated_sprite.play("run")
+		player.animated_sprite.play("Run")
 	else:
-		player.animated_sprite.play("walk")
+		player.animated_sprite.play("Walk")
 
 	player.animated_sprite.speed_scale = lerp(0.6, 3.0, speed_ratio)
