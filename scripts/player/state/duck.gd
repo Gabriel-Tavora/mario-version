@@ -1,15 +1,15 @@
 extends State
 
 const DUST_VFX = preload("res://scenes/vfx/skid_smoke.tscn")
+const DUCK_DECELERATION := 280.0
 
 var vfx_timer: float = 0.0
 const VFX_COOLDOWN := 0.1
 
 func enter() -> void:
-	player.animated_sprite.play("Duck")
+	player.animated_sprite.play("Crouch")
 	player.standing_shape.disabled = true
 	player.duck_shape.disabled = false
-
 	vfx_timer = VFX_COOLDOWN
 
 func exit() -> void:
@@ -25,7 +25,6 @@ func physics_update(delta: float) -> void:
 		player.animated_sprite.flip_h = false
 
 	if not player.is_on_floor():
-
 		if Input.is_action_just_released("player_jump") and player.velocity.y < 0:
 			player.velocity.y *= 0.6
 
@@ -35,15 +34,13 @@ func physics_update(delta: float) -> void:
 				dir * player.max_run_speed,
 				player.air_acceleration * delta
 			)
-
 	else:
 		player.velocity.x = move_toward(
 			player.velocity.x,
 			0.0,
-			player.ground_acceleration * delta
+			DUCK_DECELERATION * delta
 		)
 
-		# Fumaça enquanto estiver deslizando em alta velocidade
 		if abs(player.velocity.x) >= 100.0:
 			vfx_timer += delta
 
@@ -53,7 +50,6 @@ func physics_update(delta: float) -> void:
 				var dust = DUST_VFX.instantiate()
 				dust.position = player.position + Vector2(0, 15)
 				dust.animation_finished.connect(dust.queue_free)
-
 				player.get_tree().current_scene.add_child(dust)
 
 		if Input.is_action_just_pressed("player_jump"):

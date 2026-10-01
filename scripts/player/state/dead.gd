@@ -4,7 +4,6 @@ var is_hovering: bool = true
 
 func enter() -> void:
 
-	# 时停
 	get_tree().paused = true
 
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -22,7 +21,6 @@ func enter() -> void:
 	if player.duck_shape:
 		player.duck_shape.set_deferred("disabled", true)
 
-	# === 等待 1 秒 ===
 	await get_tree().create_timer(0.5).timeout
 
 	player.velocity.y = -300
@@ -33,7 +31,6 @@ func physics_update(_delta: float) -> void:
 	if is_hovering:
 		return
 
-	# 重力已在 Player._physics_process 统一处理
 
 func can_apply_gravity() -> bool:
 	return not is_hovering

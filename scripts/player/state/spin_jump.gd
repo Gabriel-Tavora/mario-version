@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	player.animated_sprite.play("SpinJump")
+	player.animated_sprite.play("Spin")
 	player.animated_sprite.speed_scale = 1.0
 	player.velocity.y = player.SPIN_JUMP_VELOCITY
 	player.spin_jump_sound.play()

@@ -1,5 +1,7 @@
 extends State
 
+const SKID_SPEED_THRESHOLD := 80.0
+
 func enter() -> void:
 	pass
 
@@ -29,7 +31,8 @@ func physics_update(delta: float) -> void:
 		state_machine.change_state(state_machine.idle)
 		return
 
-	if abs(player.velocity.x) >= 160.0 and sign(player.velocity.x) != sign(dir) and dir != 0:
+	# Mudança brusca de direção
+	if dir != 0 and abs(player.velocity.x) >= SKID_SPEED_THRESHOLD and sign(player.velocity.x) != sign(dir):
 		state_machine.change_state(state_machine.skid)
 		return
 
@@ -46,7 +49,7 @@ func physics_update(delta: float) -> void:
 	elif dir > 0:
 		player.animated_sprite.flip_h = false
 
-	# A animação acompanha a velocidade
+	# Animação acompanha a velocidade
 	var speed_ratio: float = abs(player.velocity.x) / player.max_run_speed
 
 	if abs(player.velocity.x) >= player.max_walk_speed:

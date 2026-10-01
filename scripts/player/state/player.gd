@@ -30,7 +30,7 @@ var max_fall_speed := 258.0
 const JUMP_VELOCITY = -360.0
 const SUPER_JUMP_VELOCITY = -430.0
 const SPIN_JUMP_VELOCITY = -280.0
-@export var GRAVITY = 900.0
+@export var gravity: float = 900.0
 
 var is_priming_jump := false
 var is_invulnerable := false
@@ -113,6 +113,7 @@ func set_form(form: PowerForm) -> void:
 			animated_sprite.sprite_frames = super_sprite_frames
 			standing_shape.position = Vector2(0, 0)
 			standing_shape.shape.size = Vector2(16, 30)
+			animated_sprite.play("Idle")
 
 		PowerForm.FIRE:
 			animated_sprite.sprite_frames = fire_sprite_frames
@@ -150,7 +151,7 @@ func _physics_process(delta: float) -> void:
 	_attempt_correction(delta, 2)
 
 	if not is_on_floor() and state_machine.current_state.can_apply_gravity():
-		velocity.y += GRAVITY * delta
+		velocity.y += gravity * delta
 		velocity.y = min(velocity.y, max_fall_speed)
 
 	move_and_slide()
@@ -185,11 +186,26 @@ func _attempt_correction(delta: float, amount: int) -> void:
 					return
 
 
-func grow_fire_animation() -> void:
+func collect_fire_flower() -> void:
+	if power_form == PowerForm.FIRE:
+		return
+
 	animated_sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 	animated_sprite.speed_scale = 1.0
 	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
 
+	match power_form:
+		PowerForm.SMALL:
+			animated_sprite.sprite_frames = small_sprite_frames_new
+		PowerForm.SUPER:
+			animated_sprite.sprite_frames = super_sprite_frames
+
+	print("FORM: ", power_form)
+	print("SPRITE FRAMES: ", animated_sprite.sprite_frames)
+	print("ANIMATIONS: ", animated_sprite.sprite_frames.get_animation_names())
+	print("SMALL: ", small_sprite_frames_new.get_animation_names())
+	print("SUPER: ", super_sprite_frames.get_animation_names())
+	print("FIRE: ", fire_sprite_frames.get_animation_names())
 	get_tree().paused = true
 
 	animated_sprite.play("GrowFire")
@@ -200,9 +216,4 @@ func grow_fire_animation() -> void:
 	get_tree().paused = false
 	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
 
-func collect_fire_flower() -> void:
-	if power_form == PowerForm.FIRE:
-		return
-
-	await grow_fire_animation()
 	set_form(PowerForm.FIRE)
