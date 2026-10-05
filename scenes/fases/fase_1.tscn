@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxyj1jdd05ckl"]
 
 [ext_resource type="PackedScene" uid="uid://416j3ilr0cp8" path="res://scenes/background.tscn" id="1_em70o"]
-[ext_resource type="PackedScene" uid="uid://c4eykaqbpirwa" path="res://scenes/vfx/Puff.tscn" id="2_nhae2"]
+[ext_resource type="PackedScene" uid="uid://c1om4dc2t1bgp" path="res://scenes/HUDS/hud.tscn" id="4_auk0y"]
 [ext_resource type="PackedScene" uid="uid://bubprsglac4jm" path="res://scenes/blocks/question_block.tscn" id="6_smrvc"]
 [ext_resource type="PackedScene" uid="uid://dn5ud4dperl5d" path="res://scenes/player.tscn" id="7_kobb1"]
 [ext_resource type="Texture2D" uid="uid://cldtyqu3ehwrm" path="res://textures/Sprites/Characters/Mario/Small.png" id="8_auk0y"]
@@ -5371,7 +5371,7 @@ layer_1/tile_data = PackedInt32Array(131088, 65537, 1, 131089, 131073, 1, 131090
 z_index = -100
 position = Vector2(6, -240)
 
-[node name="HUD" parent="." unique_id=260655030 instance=ExtResource("2_nhae2")]
+[node name="HUD2" parent="." unique_id=144846199 instance=ExtResource("4_auk0y")]
 
 [node name="Player" parent="." unique_id=991822176 instance=ExtResource("7_kobb1")]
 position = Vector2(835, -262)
