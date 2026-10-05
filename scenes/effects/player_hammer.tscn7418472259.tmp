@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dloinv7kbljdc"]
+
+[ext_resource type="Texture2D" uid="uid://beblkrdkt1240" path="res://textures/Sprites/Objects/HammerBroHammer.png" id="1_r0wqn"]
+[ext_resource type="Script" uid="uid://ofm7x7f4pyl" path="res://scripts/effects/player_hammer.gd" id="1_up8ft"]
+
+[sub_resource type="Animation" id="Animation_kewkx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kau81"]
+resource_name = "Spin"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 1.5708, 3.14159, 4.71239]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_up8ft"]
+_data = {
+&"RESET": SubResource("Animation_kewkx"),
+&"Spin": SubResource("Animation_kau81")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x7nd1"]
+radius = 6.0
+
+[node name="player_hammer" type="CharacterBody2D" unique_id=181970302]
+script = ExtResource("1_up8ft")
+throw_speed = null
+throw_angle_deg = null
+gravity = null
+max_fall_speed = null
+bounce_damping = null
+max_bounces = null
+lifetime = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=454616089]
+texture = ExtResource("1_r0wqn")
+hframes = 2
+
+[node name="Animation2" type="AnimationPlayer" parent="Sprite2D" unique_id=368780588]
+libraries/ = SubResource("AnimationLibrary_up8ft")
+autoplay = &"Spin"
+speed_scale = 2.0
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=845062896]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=620494390]
+shape = SubResource("CircleShape2D_x7nd1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=857236847]

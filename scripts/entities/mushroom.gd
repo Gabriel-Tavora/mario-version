@@ -1,5 +1,5 @@
 class_name Mushroom
-extends CharacterBody2D
+extends CharacterBody2D 
 
 @onready var pickup_area: Area2D = $PickupArea
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D

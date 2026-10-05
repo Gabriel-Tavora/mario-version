@@ -90,3 +90,15 @@ func die() -> void:
 
 	puff.play_puff()
 	queue_free()
+	
+func take_fire_hit() -> bool:
+	if is_dead:
+		return false
+	die()
+	return true
+	
+func take_hammer_hit() -> bool:
+	if is_dead:
+		return false
+	die()
+	return true

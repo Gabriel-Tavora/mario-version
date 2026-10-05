@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dxnommgewptin"]
+
+[ext_resource type="Script" uid="uid://bh88tbonjj7r4" path="res://scripts/entities/hammer.gd" id="1_evstf"]
+[ext_resource type="Texture2D" uid="uid://dg8ocgn4seyrn" path="res://textures/Sprites/Cutscenes/Hammer.png" id="1_xysqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evstf"]
+size = Vector2(12, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8oq6"]
+atlas = ExtResource("1_xysqb")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_we6kl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8oq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8oq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8oq6")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kedge"]
+size = Vector2(14, 21)
+
+[node name="Hammer" type="CharacterBody2D" unique_id=2129111311]
+script = ExtResource("1_evstf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934327823]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_evstf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=147319176]
+sprite_frames = SubResource("SpriteFrames_we6kl")
+animation = &"idle"
+frame_progress = 0.41622585
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=2064333684]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=907248975]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_kedge")

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0px7xn2h3jc2" path="res://textures/Sprites/Characters/Mario/Big.png" id="1_w6wqh"]
 [ext_resource type="Texture2D" uid="uid://cldtyqu3ehwrm" path="res://textures/Sprites/Characters/Mario/Small.png" id="3_iamuf"]
 [ext_resource type="Texture2D" uid="uid://ckqpyedl1qf3s" path="res://textures/Sprites/Characters/Mario/Fire.png" id="4_cpn1n"]
+[ext_resource type="Texture2D" uid="uid://bj82dsuf7ljot" path="res://textures/Sprites/Characters/Mario/Propeller.png" id="5_5yqlu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66dbg"]
 atlas = ExtResource("1_w6wqh")
@@ -237,6 +238,18 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("1_w6wqh")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpn1n"]
+atlas = ExtResource("1_w6wqh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("3_iamuf")
+region = Rect2(384, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3jx3"]
+atlas = ExtResource("3_iamuf")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntpgi"]
 atlas = ExtResource("1_w6wqh")
 region = Rect2(64, 64, 32, 32)
@@ -293,12 +306,20 @@ region = Rect2(384, 64, 32, 32)
 atlas = ExtResource("1_w6wqh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uocoy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
 atlas = ExtResource("1_w6wqh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yqlu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
 atlas = ExtResource("4_cpn1n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3deca"]
+atlas = ExtResource("1_w6wqh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdms2"]
+atlas = ExtResource("5_5yqlu")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6rwd"]
@@ -853,6 +874,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cpn1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3jx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3jx3")
+}],
+"loop": 0,
+"name": &"Damage",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ntpgi")
 }, {
 "duration": 1.0,
@@ -935,25 +976,48 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_31cv2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_pf23h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_31cv2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_pf23h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_31cv2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_pf23h")
 }],
 "loop": 0,
 "name": &"GrowFire",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3deca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdms2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3deca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdms2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3deca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdms2")
+}],
+"loop": 0,
+"name": &"GrowHammer",
 "speed": 15.0
 }, {
 "frames": [{
@@ -1041,9 +1105,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bu7nf")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

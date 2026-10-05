@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dn5ud4dperl5d"]
 
 [ext_resource type="Script" uid="uid://cou60ypt1a6cn" path="res://scripts/player/state/player.gd" id="1_d2wvv"]
-[ext_resource type="SpriteFrames" uid="uid://c5i21sd6ul0ht" path="res://textures/player/mario/Big.tres" id="2_dt7fs"]
+[ext_resource type="SpriteFrames" uid="uid://c5i21sd6ul0ht" path="res://textures/player/mario/Big.tres" id="3_60mlk"]
 [ext_resource type="SpriteFrames" uid="uid://d3l6pd76hs4gf" path="res://textures/player/mario/Fire.tres" id="3_dt7fs"]
 [ext_resource type="SpriteFrames" uid="uid://dj162d0blqj4r" path="res://textures/player/mario/Small.tres" id="4_4r5pv"]
+[ext_resource type="SpriteFrames" uid="uid://cf2v3o5l017ad" path="res://textures/player/mario/Propeller.tres" id="5_a38lo"]
 [ext_resource type="AudioStream" uid="uid://bhxmp70u556sv" path="res://audio/smw/player/jump.wav" id="12_3v2ag"]
 [ext_resource type="Script" uid="uid://3tmrcltmxqg4" path="res://scripts/player/state_machine.gd" id="12_a38lo"]
 [ext_resource type="AudioStream" uid="uid://vxfegf1r2emq" path="res://audio/smw/player/skid.wav" id="13_jej6c"]
@@ -21,10 +22,10 @@
 [ext_resource type="Script" uid="uid://cc35shorai56p" path="res://scripts/player/state/GroundPound.gd" id="24_wqfne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
-size = Vector2(12, 15)
+size = Vector2(12, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
-size = Vector2(12, 10)
+size = Vector2(12, 9)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4r5pv"]
 lifetime_randomness = 0.29
@@ -43,19 +44,36 @@ scale_max = 1.5
 z_index = 2
 script = ExtResource("1_d2wvv")
 small_sprite_frames_new = ExtResource("4_4r5pv")
-super_sprite_frames = ExtResource("2_dt7fs")
+super_sprite_frames = ExtResource("3_60mlk")
 fire_sprite_frames = ExtResource("3_dt7fs")
+hammer_sprite_frames = ExtResource("5_a38lo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884496988]
 sprite_frames = ExtResource("4_4r5pv")
-animation = &"Spin"
+animation = &"Walk"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"pending_changes": {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "",
+"source_uid": -1
+}
+}
 
 [node name="StandingShape" type="CollisionShape2D" parent="." unique_id=411018769]
-position = Vector2(0, 7.5)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_d2wvv")
 
 [node name="DuckShape" type="CollisionShape2D" parent="." unique_id=1959836495]
-position = Vector2(0, 10)
+position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_jej6c")
 disabled = true
 

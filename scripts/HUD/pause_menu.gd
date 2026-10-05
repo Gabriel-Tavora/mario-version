@@ -1,18 +1,22 @@
 extends Control
 
-@onready var options = [
-	$Box/MarginContainer/Vbox/Label,
-	$Box/MarginContainer/Vbox/Label2,
-	$Box/MarginContainer/Vbox/Label3
+# Atenção: o nó se chama "VBox" (com B maiúsculo). O caminho antigo usava
+# "Vbox", então as opções ficavam null e a seta nunca se movia.
+@onready var options: Array[Control] = [
+	$Box/MarginContainer/VBox/Label,
+	$Box/MarginContainer/VBox/Label2,
+	$Box/MarginContainer/VBox/Label3,
 ]
 @onready var arrow: TextureRect = $Arrow
 
 var selected_index := 0
 var can_select := true
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
+
 
 func _process(_delta: float) -> void:
 	visible = GameManager.game_paused
@@ -30,33 +34,34 @@ func _process(_delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("ui_down"):
-		selected_index += 1
-		if selected_index >= options.size():
-			selected_index = 0
-
+		selected_index = (selected_index + 1) % options.size()
 	elif Input.is_action_just_pressed("ui_up"):
-		selected_index -= 1
-		if selected_index < 0:
-			selected_index = options.size() - 1
-
+		selected_index = (selected_index - 1 + options.size()) % options.size()
 	elif Input.is_action_just_pressed("ui_accept"):
 		option_selected()
 
-	if options[selected_index] != null:
-		arrow.global_position.y = options[selected_index].global_position.y
+	_update_arrow()
 
-	selected_index = clamp(selected_index, 0, options.size() - 1)
+
+## Centraliza a seta na altura da opção selecionada
+func _update_arrow() -> void:
+	var option := options[selected_index]
+	arrow.global_position.y = option.global_position.y + (option.size.y - arrow.size.y) / 2.0
+
 
 func pause_game() -> void:
 	GameManager.game_paused = true
 	get_tree().paused = true
 	can_select = true
 	selected_index = 0
+	_update_arrow()
+
 
 func resume_game() -> void:
 	GameManager.game_paused = false
 	get_tree().paused = false
 	can_select = true
+
 
 func option_selected() -> void:
 	if not can_select:
@@ -70,20 +75,13 @@ func option_selected() -> void:
 		0:
 			resume_game()
 		1:
-			restart_level()
+			# Reinicia a fase sem gastar vida (a lógica está no GameManager)
+			GameManager.restart_level()
 		2:
-			pass
+			pass # opção 3: coloque aqui o que ela faz (ex.: voltar ao menu)
 
 	can_select = true
 
-func restart_level() -> void:
-	get_tree().paused = false
-	GameManager.game_paused = false
-
-	var current_scene := get_tree().current_scene
-	var scene_path := current_scene.scene_file_path
-
-	get_tree().change_scene_to_file(scene_path)
 
 func select_animation(option: Control) -> void:
 	for i in 5:

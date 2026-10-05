@@ -19,7 +19,7 @@ animations = [{
 size = Vector2(10, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7nd1"]
-size = Vector2(16, 16)
+size = Vector2(14, 16)
 
 [node name="SpinBlock" type="AnimatableBody2D" unique_id=1754830407]
 script = ExtResource("1_4c666")

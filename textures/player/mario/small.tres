@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cldtyqu3ehwrm" path="res://textures/Sprites/Characters/Mario/Small.png" id="1_nk7xe"]
 [ext_resource type="Texture2D" uid="uid://b0px7xn2h3jc2" path="res://textures/Sprites/Characters/Mario/Big.png" id="2_2al5v"]
 [ext_resource type="Texture2D" uid="uid://ckqpyedl1qf3s" path="res://textures/Sprites/Characters/Mario/Fire.png" id="3_uocoy"]
+[ext_resource type="Texture2D" uid="uid://bj82dsuf7ljot" path="res://textures/Sprites/Characters/Mario/Propeller.png" id="4_eawat"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_huusp"]
 atlas = ExtResource("1_nk7xe")
@@ -266,6 +267,14 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yqlu"]
 atlas = ExtResource("3_uocoy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3deca"]
+atlas = ExtResource("2_2al5v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdms2"]
+atlas = ExtResource("4_eawat")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iaijs"]
@@ -881,6 +890,35 @@ animations = [{
 }],
 "loop": 0,
 "name": &"GrowFire",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3l1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3deca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdms2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3l1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouva4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3deca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdms2")
+}],
+"loop": 0,
+"name": &"GrowHammer",
 "speed": 15.0
 }, {
 "frames": [{

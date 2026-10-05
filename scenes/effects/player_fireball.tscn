@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://big8f8xvxra0k"]
+
+[ext_resource type="Script" uid="uid://bhdgduhidq3w2" path="res://scripts/effects/player_fireball.gd" id="1_wq68o"]
+[ext_resource type="Texture2D" uid="uid://dnkq23lwhn0dq" path="res://textures/Sprites/Items/DefaultFireball.png" id="2_avggl"]
+[ext_resource type="Texture2D" uid="uid://dc5nctmjrl3y" path="res://textures/Sprites/Particles/FlameEmber.png" id="3_swfp4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydej4"]
+atlas = ExtResource("2_avggl")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs6d3"]
+atlas = ExtResource("2_avggl")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsuyt"]
+atlas = ExtResource("2_avggl")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgcpt"]
+atlas = ExtResource("2_avggl")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7nd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydej4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs6d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsuyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgcpt")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0txl"]
+size = Vector2(7.95, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytp2h"]
+radius = 6.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n1g5o"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f3kvk"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector3(1, 10, 0)
+spread = 15.0
+flatness = 1.0
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+radial_velocity_min = 49.999977
+radial_velocity_max = 49.999977
+gravity = Vector3(0, 30, 0)
+scale_min = 0.25
+scale_max = 0.39999998
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="PlayerFireball" type="CharacterBody2D" unique_id=167567596]
+script = ExtResource("1_wq68o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1920810732]
+sprite_frames = SubResource("SpriteFrames_x7nd1")
+frame_progress = 0.35188496
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1138294724]
+position = Vector2(-0.024999917, 0.5)
+shape = SubResource("RectangleShape2D_g0txl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1238382432]
+
+[node name="interactionArea" type="Area2D" parent="." unique_id=1172914229]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactionArea" unique_id=2132866682]
+shape = SubResource("CircleShape2D_ytp2h")
+
+[node name="FlameEmber" type="GPUParticles2D" parent="." unique_id=347303366]
+z_index = -1
+material = SubResource("CanvasItemMaterial_n1g5o")
+texture = ExtResource("3_swfp4")
+randomness = 0.8
+process_material = SubResource("ParticleProcessMaterial_f3kvk")

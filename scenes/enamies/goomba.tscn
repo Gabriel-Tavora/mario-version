@@ -30,7 +30,7 @@ animations = [{
 size = Vector2(12, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hfl1"]
-size = Vector2(12, 0.99999976)
+size = Vector2(14, 0.9999999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xltp"]
 size = Vector2(16, 11)
@@ -52,7 +52,7 @@ shape = SubResource("RectangleShape2D_s1jgw")
 [node name="StompArea" type="Area2D" parent="." unique_id=1868659478]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=1296751040]
-position = Vector2(2.3841858e-07, -7.500001)
+position = Vector2(-2.3841858e-07, -7.500001)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_3hfl1")
 

@@ -1,17 +1,15 @@
 extends AnimatableBody2D
 class_name InteractableBlock
 
+@onready var sprite: AnimatedSprite2D = $Sprite
 enum State {
 	EMPTY,
 	ACTIVE
 }
-
 var current_state = State.ACTIVE
+var last_hit_from_above := false   
 
-@onready var sprite: AnimatedSprite2D = $Sprite
-
-
-func hit_by_player(player: Player) -> void:
+func hit_by_player(player: Player, from_above := false) -> void:
 	print("Pai hit_by_player chamado! Estado atual: ", current_state)
 
 	if current_state == State.EMPTY:
@@ -20,7 +18,10 @@ func hit_by_player(player: Player) -> void:
 
 	print("Foi atingido.")
 
-	bounce_animation()
+	last_hit_from_above = from_above 
+
+	if not from_above:
+		bounce_animation()
 
 	_trigger_effect(player)
 

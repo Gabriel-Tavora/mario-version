@@ -216,6 +216,14 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("1_jtyo4")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d3q5"]
+atlas = ExtResource("3_4d3q5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4234r"]
+atlas = ExtResource("1_jtyo4")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_28nnj"]
 atlas = ExtResource("1_jtyo4")
 region = Rect2(64, 64, 32, 32)
@@ -272,11 +280,11 @@ region = Rect2(384, 64, 32, 32)
 atlas = ExtResource("1_jtyo4")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uocoy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
 atlas = ExtResource("3_4d3q5")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yqlu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
 atlas = ExtResource("1_jtyo4")
 region = Rect2(0, 0, 32, 32)
 
@@ -796,6 +804,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4d3q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4234r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d3q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4234r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d3q5")
+}],
+"loop": 0,
+"name": &"Damage",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_28nnj")
 }, {
 "duration": 1.0,
@@ -878,22 +906,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_wqfne")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_wnwbv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_wqfne")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_wnwbv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uocoy")
+"texture": SubResource("AtlasTexture_wqfne")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yqlu")
+"texture": SubResource("AtlasTexture_wnwbv")
 }],
 "loop": 0,
 "name": &"GrowFire",

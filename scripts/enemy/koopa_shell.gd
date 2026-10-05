@@ -3,9 +3,15 @@ extends CharacterBody2D
 
 const SHELL_SPEED := 120.0
 const GRAVITY := 900.0
+const WAKE_TIME := 25.0 # segundos parado até o Koopa sair do casco
 
 var direction := 0
 var shell_moving := false
+
+# Preenchido pelo Koopa que virou casco. Vazio = casco colocado direto na fase
+# (nesse caso ele nunca volta a ser Koopa).
+var koopa_scene_path := ""
+var _idle_time := 0.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var stomp_area: Area2D = $StompArea
@@ -27,15 +33,40 @@ func _physics_process(delta: float) -> void:
 	if shell_moving:
 		velocity.x = SHELL_SPEED * direction
 		sprite.play("spinning")
+		_idle_time = 0.0
 	else:
 		velocity.x = 0
 		sprite.play("idle")
+		_check_wake_up(delta)
 
 	move_and_slide()
 
 	if is_on_wall() and shell_moving:
 		direction *= -1
 		sprite.flip_h = direction > 0
+
+
+## Parado por WAKE_TIME segundos: o Koopa sai do casco e volta a andar.
+func _check_wake_up(delta: float) -> void:
+	if koopa_scene_path == "":
+		return
+
+	_idle_time += delta
+	if _idle_time >= WAKE_TIME:
+		wake_up()
+
+
+func wake_up() -> void:
+	# load() em vez de preload() para não criar dependência circular
+	# com o koopa.tscn (que já carrega este casco).
+	var koopa_scene := load(koopa_scene_path) as PackedScene
+	if koopa_scene == null:
+		return
+
+	var koopa = koopa_scene.instantiate()
+	get_parent().add_child(koopa)
+	koopa.global_position = global_position + Vector2(0, -8)
+	queue_free()
 
 
 func _on_stomp_area_body_entered(body: Node2D) -> void:
@@ -64,20 +95,27 @@ func kick_shell(player: Player) -> void:
 
 	shell_moving = true
 	velocity.x = SHELL_SPEED * direction
+	_idle_time = 0.0
 
 	hit_area.set_deferred("monitoring", true)
 
 	sprite.play("spinning")
 	sprite.flip_h = direction > 0
-	
+
 func stop_shell() -> void:
 	shell_moving = false
 	direction = 0
 	velocity.x = 0
+	_idle_time = 0.0
 
 	hit_area.set_deferred("monitoring", false)
 
 	sprite.play("idle")
+
+
+## Bola de fogo estoura no casco sem matar nada.
+func take_fire_hit() -> bool:
+	return false
 
 
 func _on_hit_area_body_entered(body: Node2D) -> void:

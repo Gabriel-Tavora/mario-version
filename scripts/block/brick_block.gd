@@ -8,7 +8,7 @@ var can_break := true
 
 
 func _trigger_effect(player: Player) -> void:
-	if player.power_form == Player.PowerForm.SUPER:
+	if player.power_form != Player.PowerForm.SMALL:
 		break_block()
 	else:
 		SoundManager.play_bump()
@@ -19,7 +19,8 @@ func break_block() -> void:
 		return
 
 	can_break = false
-
+	collision_layer = 0
+	
 	SoundManager.play_shatter()
 
 	var break_effect = FOUR_PART_BREAK.instantiate()
