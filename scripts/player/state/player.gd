@@ -67,9 +67,17 @@ func _ready() -> void:
 	small_sprite_frames = animated_sprite.sprite_frames
 	animated_sprite.process_mode = Node.PROCESS_MODE_INHERIT
 	powerup_sound.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	standing_shape.shape = standing_shape.shape.duplicate()
+	standing_shape.position = Vector2(0, 7.5)
+	(standing_shape.shape as RectangleShape2D).size = Vector2(12, 15)
+
+	var saved := GameManager.player_form as PowerForm
+	if saved != PowerForm.SMALL:
+		set_form(saved)
+
 	state_machine.init(self)
-
-
+	
 func die() -> void:
 	if is_invulnerable or is_dead:
 		return
@@ -151,7 +159,7 @@ func bounce() -> void:
 func set_form(form: PowerForm) -> void:
 	if form == power_form:
 		return
-
+	GameManager.player_form = form
 	if power_form == PowerForm.HAMMER:
 		_remove_hammer()
 

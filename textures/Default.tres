@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cg565txcl1ock" path="res://scenes/blocks/brick_block.tscn" id="11_sjchd"]
 [ext_resource type="PackedScene" uid="uid://dm4506a0g6pcc" path="res://scenes/enamies/goomba.tscn" id="12_j6mbk"]
 [ext_resource type="PackedScene" uid="uid://blm1a30jaypgd" path="res://scenes/enamies/koopa_troopa.tscn" id="13_imr02"]
+[ext_resource type="PackedScene" uid="uid://cly5f6jt1cd28" path="res://scenes/effects/pipe_area.tscn" id="14_yhqum"]
 [ext_resource type="Texture2D" uid="uid://bjiwgovmub115" path="res://textures/Sprites/Tilesets/Decorations/ForestTileset.png" id="19_pt68x"]
 [ext_resource type="Texture2D" uid="uid://kh28cn116mdv" path="res://textures/Sprites/Tilesets/Terrains/SwitchPalaceTiles.png" id="20_j283h"]
 [ext_resource type="Texture2D" uid="uid://jhsyoe5gg1nc" path="res://textures/Sprites/Tilesets/Terrains/TestTileset.png" id="21_rl517"]
@@ -5828,6 +5829,7 @@ scenes/3/scene = ExtResource("10_yhqum")
 scenes/4/scene = ExtResource("11_sjchd")
 scenes/5/scene = ExtResource("12_j6mbk")
 scenes/6/scene = ExtResource("13_imr02")
+scenes/7/scene = ExtResource("14_yhqum")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjtl5"]
 texture = ExtResource("19_pt68x")

@@ -1,7 +1,7 @@
 class_name KoopaShell
 extends CharacterBody2D
 
-const SHELL_SPEED := 120.0
+const SHELL_SPEED := 220.0 # mais rápido (antes 120)
 const GRAVITY := 900.0
 const WAKE_TIME := 25.0 # segundos parado até o Koopa sair do casco
 
@@ -12,6 +12,7 @@ var shell_moving := false
 # (nesse caso ele nunca volta a ser Koopa).
 var koopa_scene_path := ""
 var _idle_time := 0.0
+var _dying := false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var stomp_area: Area2D = $StompArea
@@ -27,6 +28,13 @@ func _ready() -> void:
 	hit_area.monitoring = false
 
 func _physics_process(delta: float) -> void:
+	if _dying:
+		velocity.y += GRAVITY * delta
+		move_and_slide()
+		if global_position.y > 1000:
+			queue_free()
+		return
+
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 
@@ -126,5 +134,36 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 			kick_shell(body)
 		return
 
-	if shell_moving and body is Enemy:
+	# Casco em movimento mata qualquer inimigo que ele toca
+	if shell_moving and body != self:
+		_kill(body)
+
+
+## Mata qualquer coisa que o casco encostar (Enemy, Koopa, outros cascos...).
+## Cada inimigo pode ter o seu próprio take_shell_hit(); se não tiver, usa die().
+func _kill(body: Node) -> void:
+	if body.get("is_dead") == true:
+		return
+
+	if body.has_method("take_shell_hit"):
+		body.take_shell_hit()
+	elif body.has_method("die"):
 		body.die()
+	elif body.has_method("take_hammer_hit"):
+		body.take_hammer_hit()
+
+
+## Outro casco em movimento atingindo este: este some, caindo.
+func take_shell_hit() -> bool:
+	if _dying:
+		return false
+
+	_dying = true
+	shell_moving = false
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	hit_area.set_deferred("monitoring", false)
+	stomp_area.set_deferred("monitoring", false)
+	sprite.flip_v = true
+	velocity = Vector2(0, -200)
+	return true

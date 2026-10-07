@@ -8,6 +8,7 @@ const SPEED := 40.0
 const GRAVITY := 900.0
 
 var direction := -1
+var is_dead := false
 var _became_shell := false
 
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -22,6 +23,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Morto (casco em movimento, por exemplo): só cai
+	if is_dead:
+		velocity.y += GRAVITY * delta
+		move_and_slide()
+		if global_position.y > 1000:
+			queue_free()
+		return
+
 	if not visible_on_screen_notifier_2d.is_on_screen():
 		return
 
@@ -44,6 +53,22 @@ func take_fire_hit() -> bool:
 	return true
 
 
+## Casco em movimento: o Koopa morre de verdade (não vira casco).
+func take_shell_hit() -> bool:
+	if is_dead or _became_shell:
+		return false
+
+	is_dead = true
+	stomp_area.set_deferred("monitoring", false)
+	hurt_area.set_deferred("monitoring", false)
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)  # atravessa o chão e cai
+
+	sprite.flip_v = true
+	velocity = Vector2(0, -200)
+	return true
+
+
 func _on_stomp_area_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.velocity.y >= 0:
@@ -57,7 +82,7 @@ func _on_hurt_area_entered(body: Node2D) -> void:
 
 
 func enter_shell() -> void:
-	if _became_shell:
+	if _became_shell or is_dead:
 		return
 	_became_shell = true
 
