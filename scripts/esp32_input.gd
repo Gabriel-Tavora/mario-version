@@ -1,14 +1,7 @@
 extends Node
-## Autoload "ESP32Input": recebe os botões do ESP32 por UDP e os transforma
-## em ações do Input Map (como se fosse o teclado).
-##
-## Project Settings -> Globals (Autoload) -> adicione este script como "ESP32Input".
-
 const PORT := 4210
-const TIMEOUT := 0.5  # sem pacotes por este tempo = solta todos os botões
+const TIMEOUT := 0.5  
 
-# Letra enviada pelo ESP32 -> ações do Input Map que ela aciona.
-# Nomes conferidos com o Input Map do projeto.
 const ACTIONS := {
 	"L": ["player_left", "ui_left"],
 	"R": ["player_right", "ui_right"],
@@ -21,9 +14,9 @@ const ACTIONS := {
 }
 
 var _udp := PacketPeerUDP.new()
-var _state := {}            # letra -> true/false (apertado)
+var _state := {}            
 var _last_packet_time := 0.0
-var _warned := {}           # ações inexistentes já avisadas
+var _warned := {}          
 
 
 func _ready() -> void:

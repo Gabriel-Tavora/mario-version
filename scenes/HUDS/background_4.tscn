@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b257mpuadj6je"]
+
+[ext_resource type="Texture2D" uid="uid://davt5lojdugtx" path="res://textures/Sprites/Backgrounds/Castle/Bricks.png" id="1_sud1b"]
+
+[node name="Background4" type="Node2D" unique_id=466038264]
+
+[node name="back" type="Parallax2D" parent="." unique_id=1411964169]
+z_index = -100
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(512, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="back" unique_id=1278780409]
+texture_repeat = 3
+position = Vector2(0, 50)
+texture = ExtResource("1_sud1b")
+centered = false
