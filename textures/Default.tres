@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://2ddt138b4cbe" path="res://textures/Sprites/Castle/ChainFenceSheet.png" id="7_do3bx"]
 [ext_resource type="PackedScene" uid="uid://c4wl45vrcbybd" path="res://scenes/blocks/spin_block.tscn" id="8_g62jb"]
 [ext_resource type="PackedScene" uid="uid://bubprsglac4jm" path="res://scenes/blocks/question_block.tscn" id="9_bfl6c"]
+[ext_resource type="PackedScene" uid="uid://cdaqn0w0tr5au" path="res://scenes/enamies/bonzai_bill.tscn" id="9_imr02"]
+[ext_resource type="PackedScene" uid="uid://dw1nycwrsfncs" path="res://scenes/enamies/jumping_piranha_plant.tscn" id="10_24cts"]
 [ext_resource type="PackedScene" uid="uid://xux1ukoual24" path="res://scenes/entities/coin.tscn" id="10_yhqum"]
 [ext_resource type="PackedScene" uid="uid://cg565txcl1ock" path="res://scenes/blocks/brick_block.tscn" id="11_sjchd"]
 [ext_resource type="PackedScene" uid="uid://dm4506a0g6pcc" path="res://scenes/enamies/goomba.tscn" id="12_j6mbk"]
@@ -5834,6 +5836,8 @@ scenes/6/scene = ExtResource("13_imr02")
 scenes/7/scene = ExtResource("14_yhqum")
 scenes/8/scene = ExtResource("15_sjchd")
 scenes/9/scene = ExtResource("16_j6mbk")
+scenes/10/scene = ExtResource("9_imr02")
+scenes/11/scene = ExtResource("10_24cts")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjtl5"]
 texture = ExtResource("19_pt68x")

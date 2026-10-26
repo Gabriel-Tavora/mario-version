@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cdaqn0w0tr5au"]
+
+[ext_resource type="Script" uid="uid://dhvuxmekgt8l" path="res://scripts/enemy/bonzai_bill.gd" id="1_4x5kr"]
+[ext_resource type="Texture2D" uid="uid://oe8123mt0hx7" path="res://textures/Sprites/Enemys/BanzaiBill.png" id="2_6c51q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7nd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6c51q")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvl1w"]
+size = Vector2(59, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x5kr"]
+size = Vector2(58, 6)
+
+[node name="BonzaiBill" type="CharacterBody2D" unique_id=1365018733]
+collision_mask = 3
+script = ExtResource("1_4x5kr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=355181006]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_x7nd1")
+animation = &"idle"
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=827546934]
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=46394258]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=198564165]
+position = Vector2(2.5, 4)
+shape = SubResource("RectangleShape2D_xvl1w")
+
+[node name="StompArea" type="Area2D" parent="." unique_id=747222964]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=2074051824]
+position = Vector2(2, -26)
+shape = SubResource("RectangleShape2D_4x5kr")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=623460362]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-86, -54)
+rect = Rect2(-10, -10, 128, 128)
+
+[connection signal="area_entered" from="HurtArea" to="." method="check_hit"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

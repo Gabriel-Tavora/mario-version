@@ -7,19 +7,23 @@ var dir = -1
 var speed = 40.0
 var is_dead = false
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var physics_shape: CollisionShape2D = $PhysicsShape
-@onready var stomp_area: Area2D = $StompArea
-@onready var hurt_area: Area2D = $HurtArea
-@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
+@onready var physics_shape: CollisionShape2D = get_node_or_null("PhysicsShape")
+@onready var stomp_area: Area2D = get_node_or_null("StompArea")
+@onready var hurt_area: Area2D = get_node_or_null("HurtArea")
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = get_node_or_null("VisibleOnScreenNotifier2D")
 
 func _ready() -> void:
-	sprite.play("idle")
-	stomp_area.body_entered.connect(_on_stomp_area_entered)
-	hurt_area.body_entered.connect(_on_hurt_area_entered)
+	if sprite:
+		sprite.play("idle")
+	if stomp_area:
+		stomp_area.body_entered.connect(_on_stomp_area_entered)
+	if hurt_area:
+		hurt_area.body_entered.connect(_on_hurt_area_entered)
+
 
 func _physics_process(delta: float) -> void:
-	if not visible_on_screen_notifier_2d.is_on_screen() and not is_dead:
+	if visible_on_screen_notifier_2d and not visible_on_screen_notifier_2d.is_on_screen() and not is_dead:
 		return
 
 	sprite.flip_h = dir < 0

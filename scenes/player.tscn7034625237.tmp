@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://dn5ud4dperl5d"]
+
+[ext_resource type="Script" uid="uid://uyabqoysw2rf" path="res://scripts/player/player.gd" id="1_y4r1p"]
+[ext_resource type="SpriteFrames" uid="uid://dj162d0blqj4r" path="res://textures/player/mario/Small.tres" id="4_4r5pv"]
+[ext_resource type="Script" uid="uid://bkjm7psm6knwo" path="res://scripts/player/states/dead.gd" id="4_60mlk"]
+[ext_resource type="Script" uid="uid://bt651c245t50" path="res://scripts/player/states/idle.gd" id="5_i4ail"]
+[ext_resource type="Script" uid="uid://cvtwjyakq72fq" path="res://scripts/player/states/run.gd" id="6_a38lo"]
+[ext_resource type="Script" uid="uid://cci3rl2ro3x3k" path="res://scripts/player/states/air.gd" id="7_4ni07"]
+[ext_resource type="Script" uid="uid://bkv6hlh36i0gk" path="res://scripts/player/states/duck.gd" id="8_l71n6"]
+[ext_resource type="Script" uid="uid://cntxpmdby3dks" path="res://scripts/player/states/skid.gd" id="9_ke2ow"]
+[ext_resource type="Script" uid="uid://8ekblrqxqjhg" path="res://scripts/player/states/spin_jump.gd" id="10_ujl30"]
+[ext_resource type="Script" uid="uid://ckfj028x73j5e" path="res://scripts/player/states/ground_pound.gd" id="11_31cv2"]
+[ext_resource type="AudioStream" uid="uid://bhxmp70u556sv" path="res://audio/smw/player/jump.wav" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://3i1nbyt8aqo7" path="res://scripts/player/states/slide.gd" id="12_60mlk"]
+[ext_resource type="Script" uid="uid://dq553olrduh5h" path="res://scripts/player/state_machine.gd" id="12_a38lo"]
+[ext_resource type="AudioStream" uid="uid://vxfegf1r2emq" path="res://audio/smw/player/skid.wav" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://8y0jwu1mudse" path="res://scripts/player/player_powers.gd" id="18_pf23h"]
+[ext_resource type="Script" uid="uid://dpf7lkd3mtb1e" path="res://scripts/player/player_attack.gd" id="19_dt7fs"]
+[ext_resource type="AudioStream" uid="uid://c345xnns7om3m" path="res://audio/smw/player/klock.ogg" id="20_60mlk"]
+[ext_resource type="AudioStream" uid="uid://dt7f4s3d4u5k6" path="res://audio/smw/player/spin_jump.wav" id="21_spinj"]
+[ext_resource type="AudioStream" uid="uid://cpvqy2k0d2cju" path="res://audio/smw/player/dead.ogg" id="22_a38lo"]
+[ext_resource type="AudioStream" uid="uid://b20440v3vqlik" path="res://audio/smw/player/powerup.wav" id="23_pwrup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(12, 9)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4r5pv"]
+lifetime_randomness = 0.29
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_damping_as_friction = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 2, 1)
+direction = Vector3(0, -1, 0)
+flatness = 0.29
+gravity = Vector3(0, 98, 0)
+scale_min = 1.1
+scale_max = 1.5
+
+[node name="Player" type="CharacterBody2D" unique_id=991822176]
+z_index = 2
+script = ExtResource("1_y4r1p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884496988]
+sprite_frames = ExtResource("4_4r5pv")
+animation = &"Slide"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"pending_changes": {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "",
+"source_uid": -1
+}
+}
+
+[node name="StandingShape" type="CollisionShape2D" parent="." unique_id=411018769]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_d2wvv")
+
+[node name="DuckShape" type="CollisionShape2D" parent="." unique_id=1959836495]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_jej6c")
+disabled = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=1275602614]
+script = ExtResource("12_a38lo")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1476264408]
+script = ExtResource("4_60mlk")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=191902531]
+script = ExtResource("5_i4ail")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=94996621]
+script = ExtResource("6_a38lo")
+
+[node name="Air" type="Node" parent="StateMachine" unique_id=731890421]
+script = ExtResource("7_4ni07")
+
+[node name="Duck" type="Node" parent="StateMachine" unique_id=343915362]
+script = ExtResource("8_l71n6")
+
+[node name="Skid" type="Node" parent="StateMachine" unique_id=2120521197]
+script = ExtResource("9_ke2ow")
+
+[node name="SpinJump" type="Node" parent="StateMachine" unique_id=674632180]
+script = ExtResource("10_ujl30")
+
+[node name="GroundPound" type="Node" parent="StateMachine" unique_id=1778078532]
+script = ExtResource("11_31cv2")
+
+[node name="Slide" type="Node" parent="StateMachine" unique_id=599635629]
+script = ExtResource("12_60mlk")
+
+[node name="SkidParticles" type="GPUParticles2D" parent="." unique_id=1600273507]
+position = Vector2(0, 14)
+emitting = false
+visibility_rect = Rect2(-100, -100.39, 200, 200)
+process_material = SubResource("ParticleProcessMaterial_4r5pv")
+
+[node name="Sound" type="Node" parent="." unique_id=1968830866]
+
+[node name="KlockSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=377240828]
+stream = ExtResource("20_60mlk")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1382500947]
+stream = ExtResource("12_3v2ag")
+
+[node name="SkidSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=676707138]
+stream = ExtResource("13_jej6c")
+
+[node name="DeadSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1035916672]
+stream = ExtResource("22_a38lo")
+
+[node name="SpinJumpSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1152462964]
+stream = ExtResource("21_spinj")
+
+[node name="PowerupSound" type="AudioStreamPlayer2D" parent="Sound" unique_id=1257593649]
+stream = ExtResource("23_pwrup")
+
+[node name="Powers" type="Node" parent="." unique_id=563090221]
+script = ExtResource("18_pf23h")
+
+[node name="Attack" type="Node" parent="." unique_id=1754660986]
+script = ExtResource("19_dt7fs")
